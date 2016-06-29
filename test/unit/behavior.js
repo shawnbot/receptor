@@ -35,6 +35,32 @@ describe('behavior({event: function})', function() {
 
 });
 
+describe('behavior({"event1 event2": function})', function() {
+
+  it('adds multiple event type listeners', function() {
+    document.body.innerHTML = '<button>hi</button>';
+    var target = document.querySelector('button');
+    var times = 0;
+    var b = behavior({'click focus': function(e) {
+      times++;
+    }});
+    b.add(target);
+    target.click();
+    target.focus();
+    b.remove(target);
+    target.click();
+    target.focus();
+    b.add(target);
+    target.click();
+    target.focus();
+    b.remove(target);
+    target.click();
+    target.focus();
+    assert.equal(times, 4);
+  });
+
+});
+
 describe('behavior({event: {selector: function}})', function() {
 
   it('adds and removes', function() {
@@ -79,9 +105,27 @@ describe('behavior({"event:delegate(selector)": callback}', function() {
     assert.equal(times, 2);
   });
 
+  it('adds and removes multiple event type listeners', function() {
+    document.body.innerHTML = '<h1>yo</h1> <button>hi <i>there</i></button>';
+    var target = document.querySelector('button');
+    var times = 0;
+    var b = behavior({
+      'click focus:delegate(button)': function(e) {
+        times++;
+      }
+    });
+    b.add(target);
+    target.click();
+    target.focus();
+    b.remove(target);
+    target.click();
+    target.focus();
+    assert.equal(times, 2);
+  });
+
 });
 
-xdescribe('behavior() with options', function() {
+xdescribe('behavior options', function() {
 
   describe('behavior({event: {"*": function, ...options}})', function() {
 
