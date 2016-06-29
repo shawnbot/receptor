@@ -1,5 +1,4 @@
 const keymap = require('../../lib/keymap');
-const once = require('../../lib/once');
 
 const assert = require('assert');
 const jsdom = require('jsdom-global');
