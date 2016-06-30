@@ -128,9 +128,11 @@ interactions:
 var MenuButton = receptor.behavior({
   'click': {
     '[role=menubutton]': function(event) {
-      MenuButton.toggle(this);
-      var off = MenuButton.getCloseListener(this);
-      window.addEventListener('click', off);
+      var pressed = MenuButton.toggle(this);
+      if (pressed) {
+        var close = MenuButton.getCloseListener(this);
+        window.addEventListener('click', close);
+      }
     }
   }
 }, {
@@ -139,8 +141,8 @@ var MenuButton = receptor.behavior({
       pressed = button.getAttribute('aria-pressed') !== 'true';
     }
     button.setAttribute('aria-pressed', pressed);
-    MenuButton.getMenu(button)
-      .setAttribute('aria-hidden', !pressed);
+    MenuButton.getMenu(button).setAttribute('aria-hidden', !pressed);
+    return pressed;
   },
 
   getMenu: function(button) {
