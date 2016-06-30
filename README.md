@@ -77,10 +77,11 @@ event's `target` isn't _contained_ by the provided `element`. This
 is useful for creating event handlers that only fire if the user
 interacts with something outside of a given UI element.
 
-## <a name="once"></a> `receptor.once(callback)`
+## <a name="once"></a> `receptor.once(callback [, options])`
 Returns a wrapped function that removes itself as an event listener
 as soon as it's called, then calls the `callback` function with the
-same arugments.
+same arugments. If you provide [listener options][addEventListener],
+those will also be passed to `removeEventListener()`.
 
 ## <a name="keymap"></a> `receptor.keymap(keys)`
 Returns a delegated function in which each key in the `keys` object
@@ -166,3 +167,4 @@ MenuButton.add(document.body);
 
 [key name]: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
 [other tools]: https://www.npmjs.com/search?q=delegate
+[addEventListener]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
