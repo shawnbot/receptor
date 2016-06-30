@@ -1,6 +1,21 @@
 # receptor
-Yes, it's another DOM event delegation toolkit! But this one is
-different, _I swear_. Check it out:
+Yes, it's another DOM event delegation toolkit! If you're new to event
+delegation, here's the gist:
+
+> Event delegation is a method for listening for events that bubble to
+> a higher level in the DOM and applying a function only if the event's
+> target meets some criteria (typically that it matches a given CSS
+> selector). The primary advantage over adding event listeners to
+> specific elements is that **you don't need to know what's in the DOM
+> to listen for events from certain elements.** In other words, you can
+> modify the DOM willy-nilly without having to juggle adding and
+> removing "direct" event listeners whenever certain elements are
+> added and removed.
+
+There are [lots of different tools][other tools] that do delegation.
+The technique is even baked into [jQuery](http://api.jquery.com/on/),
+which behaves "correctly" in the sense that delegated functions match
+CSS selectors both for the target element _and its ancestors_.
 
 ## `receptor.delegate(selector, fn)`
 Returns a delegated function that only calls the `fn` callback if
@@ -142,3 +157,4 @@ MenuButton.add(document.body);
 ```
 
 [key name]: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+[other tools]: https://www.npmjs.com/search?q=delegate
