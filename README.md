@@ -25,7 +25,7 @@ listeners, and crafting reuseable [behaviors](#behavior).
 
 ## API
 
-### <a name="delegate"></a> `receptor.delegate(selector, fn)`
+### <a name="delegate">#</a> `receptor.delegate(selector, fn)`
 Returns a delegated function that only calls the `fn` callback if
 the event target matches the given CSS `selector`, _or if it is
 contained by an element that does_. The callback is called with the
@@ -48,7 +48,7 @@ document.body.addEventListener(
 </script>
 ```
 
-### <a name="delegateAll"></a> `receptor.delegateAll(selectors)`
+### <a name="delegateAll">#</a> `receptor.delegateAll(selectors)`
 Returns a delegated function that treats each key in the `selectors`
 map as a CSS selector to match _a la_ `receptor.delegate()`, and can either
 delegate events to multiple callbacks with matching selectors or
@@ -72,19 +72,19 @@ document.body.addEventListener(
 );
 ```
 
-### <a name="ignore"></a> `receptor.ignore(element, callback)`
+### <a name="ignore">#</a> `receptor.ignore(element, callback)`
 Returns a delegated function that only calls the `callback` if the
 event's `target` isn't _contained_ by the provided `element`. This
 is useful for creating event handlers that only fire if the user
 interacts with something outside of a given UI element.
 
-### <a name="once"></a> `receptor.once(callback [, options])`
+### <a name="once">#</a> `receptor.once(callback [, options])`
 Returns a wrapped function that removes itself as an event listener
 as soon as it's called, then calls the `callback` function with the
 same arugments. If you provide [listener options][addEventListener],
 those will also be passed to `removeEventListener()`.
 
-### <a name="keymap"></a> `receptor.keymap(keys)`
+### <a name="keymap">#</a> `receptor.keymap(keys)`
 Returns a delegated function in which each key in the `keys` object
 is treated as a [key name] or _combination_ with modifier keys:
 
@@ -102,7 +102,7 @@ event handler with potentially messy key detection logic. Supported
 modifier keys are <kbd>Alt</kbd>, <kbd>Control</kbd> (or
 <kbd>Ctrl</kbd>), and <kbd>Shift</kbd>.
 
-### <a name="behavior"></a> `receptor.behavior(listeners [, properties])`
+### <a name="behavior">#</a> `receptor.behavior(listeners [, properties])`
 Returns a _behavior_ object defined by one or more delegated
 listeners, which exposes `add()` and `remove()` methods for
 attaching and removing all delegates. Other `properties` will be
