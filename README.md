@@ -85,7 +85,18 @@ listeners, which exposes `add()` and `remove()` methods for
 attaching and removing all delegates. Other `properties` will be
 merged if provided.
 
-This is the main building block for developing rich interactions:
+Each key in `listeners` should be one of either:
+
+1. One or more event types, such as `click`, `keydown`, or
+   `mousedown touchstart` (multiple types are separated by spaces),
+   in which case the value can either be a function or an object
+   suitable for `receptor.delegateAll()`; or
+1. A string in the form `types:delegate(selector)`, where `types` can
+   be one or more event types separated with spaces, and `selector`
+   is a CSS selector.
+
+This is the primary building block for developing rich, declarative
+interactions:
 
 ```html
 <button role="menubutton" aria-controls="menu">toggle menu</button>
