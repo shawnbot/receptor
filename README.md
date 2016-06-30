@@ -31,8 +31,7 @@ matching element as `this`.
 
 **Why?** Because many delegation tools only handle the case in which
 the event's `target` matches the given selector, which breaks down
-as soon as you want to delegate to elements that have child
-elements.
+as soon as you want to delegate to elements with children.
 
 ```html
 <button>hi</button>
