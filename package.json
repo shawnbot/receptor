@@ -7,7 +7,10 @@
   "license": "CC0-1.0",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha test/unit"
+    "test": "mocha test/unit",
+    "build": "browserify lib/index.js > dist/receptor.js",
+    "minify": "uglifyjs dist/bundle.js > dist/receptor.min.js",
+    "preversion": "npm run build && npm run minify"
   },
   "keywords": [
     "dom",
