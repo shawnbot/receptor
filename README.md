@@ -1,6 +1,6 @@
 # receptor
 Yes, it's another DOM event delegation toolkit! But this one is
-different, I swear. Here's what you get:
+different, _I swear_. Check it out:
 
 ## `receptor.delegate(selector, fn)`
 Returns a delegated function that only calls the `fn` callback if
