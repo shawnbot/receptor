@@ -1,7 +1,10 @@
 {
   "name": "receptor",
   "version": "0.1.0",
-  "description": "Magical DOM event delegation",
+  "description": "A better way to manage DOM event delegation and handling",
+  "repository": "github:shawnbot/receptor",
+  "author": "Shawn Allen <shawn.allen@gsa.gov>",
+  "license": "CC0-1.0",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha test/unit"
@@ -13,16 +16,14 @@
     "behavior",
     "keyboard"
   ],
-  "author": "Shawn Allen <shawn.allen@gsa.gov>",
-  "license": "CC0-1.0",
-  "devDependencies": {
-    "jsdom": "^9.3.0",
-    "jsdom-global": "^2.0.0",
-    "mocha": "^2.5.3"
-  },
   "dependencies": {
     "keyboardevent-key-polyfill": "^1.0.2",
     "matches-selector": "^1.0.0",
     "object-assign": "^4.1.0"
+  },
+  "devDependencies": {
+    "jsdom": "^9.3.0",
+    "jsdom-global": "^2.0.0",
+    "mocha": "^2.5.3"
   }
 }
