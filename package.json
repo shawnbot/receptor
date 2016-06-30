@@ -1,6 +1,6 @@
 {
   "name": "receptor",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A better way to manage DOM event delegation and handling",
   "repository": "github:shawnbot/receptor",
   "author": "Shawn Allen <shawn.allen@gsa.gov>",
