@@ -143,17 +143,16 @@ module.exports = function ignore(element, fn) {
 };
 
 },{}],7:[function(require,module,exports){
-'use strict';
-
 module.exports = {
-  behavior: require('./behavior'),
-  delegate: require('./delegate'),
-  delegateAll: require('./delegateAll'),
-  ignore: require('./ignore'),
-  keymap: require('./keymap'),
+  behavior:     require('./behavior'),
+  closest:      require('./closest'),
+  delegate:     require('./delegate'),
+  delegateAll:  require('./delegateAll'),
+  ignore:       require('./ignore'),
+  keymap:       require('./keymap'),
 };
 
-},{"./behavior":1,"./delegate":4,"./delegateAll":5,"./ignore":6,"./keymap":8}],8:[function(require,module,exports){
+},{"./behavior":1,"./closest":2,"./delegate":4,"./delegateAll":5,"./ignore":6,"./keymap":8}],8:[function(require,module,exports){
 require('keyboardevent-key-polyfill');
 
 // these are the only relevant modifiers supported on all platforms,
