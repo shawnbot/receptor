@@ -1,6 +1,6 @@
 {
   "name": "receptor",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "description": "A better way to manage DOM event delegation and handling",
   "repository": "github:shawnbot/receptor",
   "author": "Shawn Allen <shawn.allen@gsa.gov>",
@@ -20,6 +20,7 @@
     "keyboard"
   ],
   "dependencies": {
+    "element-closest": "^2.0.1",
     "keyboardevent-key-polyfill": "^1.0.2",
     "matches-selector": "^1.0.0",
     "object-assign": "^4.1.0"

@@ -77,19 +77,7 @@ module.exports = function behavior(events, props) {
   }, props);
 };
 
-},{"./delegate":4,"./delegateAll":5,"object-assign":11}],2:[function(require,module,exports){
-const matches = require('matches-selector');
-
-module.exports = function(element, selector) {
-  do {
-    if (matches(element, selector)) {
-      return element;
-    }
-  } while ((element = element.parentNode) && element.nodeType === 1);
-};
-
-
-},{"matches-selector":10}],3:[function(require,module,exports){
+},{"./delegate":3,"./delegateAll":4,"object-assign":10}],2:[function(require,module,exports){
 module.exports = function compose(functions) {
   return function(e) {
     return functions.some(function(fn) {
@@ -98,19 +86,20 @@ module.exports = function compose(functions) {
   };
 };
 
-},{}],4:[function(require,module,exports){
-const closest = require('./closest');
+},{}],3:[function(require,module,exports){
+// polyfill Element.prototype.closest
+require('element-closest');
 
 module.exports = function delegate(selector, fn) {
   return function delegation(event) {
-    var target = closest(event.target, selector);
+    var target = event.target.closest(selector);
     if (target) {
       return fn.call(target, event);
     }
   }
 };
 
-},{"./closest":2}],5:[function(require,module,exports){
+},{"element-closest":8}],4:[function(require,module,exports){
 const delegate = require('./delegate');
 const compose = require('./compose');
 
@@ -133,7 +122,7 @@ module.exports = function delegateAll(selectors) {
   return compose(delegates);
 };
 
-},{"./compose":3,"./delegate":4}],6:[function(require,module,exports){
+},{"./compose":2,"./delegate":3}],5:[function(require,module,exports){
 module.exports = function ignore(element, fn) {
   return function ignorance(e) {
     if (element !== e.target && !element.contains(e.target)) {
@@ -142,17 +131,16 @@ module.exports = function ignore(element, fn) {
   };
 };
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = {
   behavior:     require('./behavior'),
-  closest:      require('./closest'),
   delegate:     require('./delegate'),
   delegateAll:  require('./delegateAll'),
   ignore:       require('./ignore'),
   keymap:       require('./keymap'),
 };
 
-},{"./behavior":1,"./closest":2,"./delegate":4,"./delegateAll":5,"./ignore":6,"./keymap":8}],8:[function(require,module,exports){
+},{"./behavior":1,"./delegate":3,"./delegateAll":4,"./ignore":5,"./keymap":7}],7:[function(require,module,exports){
 require('keyboardevent-key-polyfill');
 
 // these are the only relevant modifiers supported on all platforms,
@@ -197,7 +185,40 @@ module.exports = function keymap(keys) {
 
 module.exports.MODIFIERS = MODIFIERS;
 
-},{"keyboardevent-key-polyfill":9}],9:[function(require,module,exports){
+},{"keyboardevent-key-polyfill":9}],8:[function(require,module,exports){
+// element-closest | CC0-1.0 | github.com/jonathantneal/closest
+
+if (typeof Element.prototype.matches !== 'function') {
+	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.webkitMatchesSelector || function matches(selector) {
+		var element = this;
+		var elements = (element.document || element.ownerDocument).querySelectorAll(selector);
+		var index = 0;
+
+		while (elements[index] && elements[index] !== element) {
+			++index;
+		}
+
+		return Boolean(elements[index]);
+	};
+}
+
+if (typeof Element.prototype.closest !== 'function') {
+	Element.prototype.closest = function closest(selector) {
+		var element = this;
+
+		while (element && element.nodeType === 1) {
+			if (element.matches(selector)) {
+				return element;
+			}
+
+			element = element.parentNode;
+		}
+
+		return null;
+	};
+}
+
+},{}],9:[function(require,module,exports){
 /* global define, KeyboardEvent, module */
 
 (function () {
@@ -322,36 +343,6 @@ module.exports.MODIFIERS = MODIFIERS;
 
 },{}],10:[function(require,module,exports){
 'use strict';
-
-var proto = Element.prototype;
-var vendor = proto.matches
-  || proto.matchesSelector
-  || proto.webkitMatchesSelector
-  || proto.mozMatchesSelector
-  || proto.msMatchesSelector
-  || proto.oMatchesSelector;
-
-module.exports = match;
-
-/**
- * Match `el` to `selector`.
- *
- * @param {Element} el
- * @param {String} selector
- * @return {Boolean}
- * @api public
- */
-
-function match(el, selector) {
-  if (vendor) return vendor.call(el, selector);
-  var nodes = el.parentNode.querySelectorAll(selector);
-  for (var i = 0; i < nodes.length; i++) {
-    if (nodes[i] == el) return true;
-  }
-  return false;
-}
-},{}],11:[function(require,module,exports){
-'use strict';
 /* eslint-disable no-unused-vars */
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
@@ -435,4 +426,4 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}]},{},[7]);
+},{}]},{},[6]);
