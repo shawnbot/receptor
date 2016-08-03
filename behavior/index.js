@@ -1,6 +1,6 @@
 const assign = require('object-assign');
-const delegate = require('./delegate');
-const delegateAll = require('./delegateAll');
+const delegate = require('../delegate');
+const delegateAll = require('../delegateAll');
 
 const DELEGATE_PATTERN = /^(.+):delegate\((.+)\)$/;
 const SPACE = ' ';

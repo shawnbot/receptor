@@ -2,7 +2,7 @@ const assert = require('assert');
 const jsdom = require('jsdom-global');
 
 var cleanup = jsdom();
-const behavior = require('../../lib/behavior');
+const behavior = require('../../behavior');
 cleanup();
 
 beforeEach(function() {

@@ -5,7 +5,7 @@
   "repository": "github:shawnbot/receptor",
   "author": "Shawn Allen <shawn.allen@gsa.gov>",
   "license": "CC0-1.0",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha test/unit",
     "build": "browserify lib/index.js > dist/receptor.js",

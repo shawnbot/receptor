@@ -2,7 +2,7 @@ const assert = require('assert');
 const jsdom = require('jsdom-global');
 
 var cleanup = jsdom();
-const closest = require('../../lib/closest');
+const closest = require('../../closest');
 cleanup();
 
 beforeEach(function() {

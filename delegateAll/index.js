@@ -1,5 +1,5 @@
-const delegate = require('./delegate');
-const compose = require('./compose');
+const delegate = require('../delegate');
+const compose = require('../compose');
 
 const SPLAT = '*';
 

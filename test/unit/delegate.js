@@ -2,7 +2,7 @@ const assert = require('assert');
 const jsdom = require('jsdom-global');
 
 var cleanup = jsdom();
-const delegate = require('../../lib/delegate');
+const delegate = require('../../delegate');
 cleanup();
 
 beforeEach(function() {

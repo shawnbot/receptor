@@ -1,7 +1,7 @@
-const keymap = require('../../lib/keymap');
-
 const assert = require('assert');
 const jsdom = require('jsdom-global');
+
+const keymap = require('../../keymap');
 
 beforeEach(function() {
   this.cleanup = jsdom();
