@@ -1,6 +1,7 @@
 const assert = require('assert');
 const jsdom = require('jsdom-global');
-const once = require('../../lib/once');
+
+const once = require('../../once');
 
 beforeEach(function() {
   cleanup = jsdom();

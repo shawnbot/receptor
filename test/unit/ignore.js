@@ -1,7 +1,7 @@
 const assert = require('assert');
 const jsdom = require('jsdom-global');
 
-const ignore = require('../../lib/ignore');
+const ignore = require('../../ignore');
 
 beforeEach(function() {
   cleanup = jsdom();

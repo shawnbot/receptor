@@ -23,6 +23,39 @@ CSS selectors both for the target element _and its ancestors_.
 [ignoring](#ignore) subtrees of the DOM, adding [one-off](#once)
 listeners, and crafting reuseable [behaviors](#behavior).
 
+## Installation
+
+### Node
+You can install receptor as a Node module with:
+
+```sh
+npm install receptor
+```
+
+In CommonJS environments, you may either require the module and access its
+[API](#API) via properties:
+
+```js
+var receptor = require('receptor');
+var click = receptor.delegate('click', 'button', function(e) {
+  // ...
+});
+```
+
+or you can require the top-level API methods directly, which can cut down on
+your bundle size if you don't need the entire API:
+
+```js
+var behavior = require('receptor/behavior');
+var delegateAll = require('receptor/delegateAll');
+// etc.
+```
+
+### Browser
+To use receptor in the browser, you can either bundle it with your CommonJS
+tool of choice ([browserify], [webpack], etc.) or grab one of the standalone
+builds in the [dist directory](dist/).
+
 ## API
 
 ### <a name="delegate" href="#delegate">#</a> `receptor.delegate(selector, fn)`
@@ -169,3 +202,5 @@ MenuButton.add(document.body);
 [key name]: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
 [other tools]: https://www.npmjs.com/search?q=delegate
 [addEventListener]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+[browserify]: http://browserify.org/
+[webpack]: https://webpack.github.io/
