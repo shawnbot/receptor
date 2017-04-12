@@ -8,9 +8,13 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test/unit",
-    "build": "browserify lib/index.js > dist/receptor.js",
-    "minify": "uglifyjs dist/receptor.js > dist/receptor.min.js",
-    "preversion": "npm run build && npm run minify"
+    "build": "browserify --debug -t babelify -g uglifyify -p mapstraction index.js -o dist/receptor.js",
+    "preversion": "npm run build"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   },
   "keywords": [
     "dom",
@@ -26,8 +30,12 @@
     "object-assign": "^4.1.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
     "jsdom": "^9.3.0",
     "jsdom-global": "^2.0.0",
-    "mocha": "^2.5.3"
+    "mapstraction": "^1.0.1",
+    "mocha": "^2.5.3",
+    "uglifyify": "^3.0.4"
   }
 }
