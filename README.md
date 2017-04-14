@@ -53,8 +53,8 @@ var delegateAll = require('receptor/delegateAll');
 
 ### Browser
 To use receptor in the browser, you can either bundle it with your CommonJS
-tool of choice ([browserify], [webpack], etc.) or grab one of the standalone
-builds in the [dist directory](dist/).
+tool of choice ([browserify], [webpack], etc.) or grab the browser-ready build
+from the [dist directory](dist/).
 
 ## API
 
