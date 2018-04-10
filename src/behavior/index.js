@@ -17,17 +17,14 @@ const getListeners = (type, handler) => {
   if (typeof handler === 'object') {
     options = {
       capture: popKey(handler, 'capture'),
-      passive: popKey(handler, 'passive'),
+      passive: popKey(handler, 'passive')
     }
   }
 
-  var listener = {
+  const listener = {
     selector,
     options,
-    delegate:
-      typeof handler === 'object'
-        ? delegateAll(handler)
-        : selector ? delegate(selector, handler) : handler,
+    delegate: typeof handler === 'object' ? delegateAll(handler) : selector ? delegate(selector, handler) : handler
   }
 
   if (type.indexOf(SPACE) > -1) {
@@ -40,8 +37,8 @@ const getListeners = (type, handler) => {
   }
 }
 
-var popKey = (obj, key) => {
-  var value = obj[key]
+const popKey = (obj, key) => {
+  const value = obj[key]
   delete obj[key]
   return value
 }
@@ -55,23 +52,15 @@ export default function behavior(events, props) {
   return assign(
     {
       add: element => {
-        listeners.forEach(listener => {
-          element.addEventListener(
-            listener.type,
-            listener.delegate,
-            listener.options
-          )
-        })
+        for (const listener of listeners) {
+          element.addEventListener(listener.type, listener.delegate, listener.options)
+        }
       },
       remove: element => {
-        listeners.forEach(listener => {
-          element.removeEventListener(
-            listener.type,
-            listener.delegate,
-            listener.options
-          )
-        })
-      },
+        for (const listener of listeners) {
+          element.removeEventListener(listener.type, listener.delegate, listener.options)
+        }
+      }
     },
     props
   )

@@ -28,7 +28,7 @@ describe('behavior({"event1 event2": function})', function() {
     const target = document.querySelector('button')
     const tick = ticker()
     const b = behavior({
-      'click focus': tick,
+      'click focus': tick
     })
     b.add(target)
     target.click()
@@ -53,8 +53,8 @@ describe('behavior({event: {selector: function}})', function() {
     const tick = ticker()
     const b = behavior({
       click: {
-        button: tick,
-      },
+        button: tick
+      }
     })
     b.add(target)
     target.click()
@@ -72,7 +72,7 @@ describe('behavior({"event:delegate(selector)": callback}', function() {
     target.innerHTML = '<h1>yo</h1> <button>hi <i>there</i></button>'
     const tick = ticker()
     const b = behavior({
-      'click:delegate(button)': tick,
+      'click:delegate(button)': tick
     })
     b.add(target)
     target.click()
@@ -88,7 +88,7 @@ describe('behavior({"event:delegate(selector)": callback}', function() {
     const target = document.querySelector('button')
     const tick = ticker()
     const b = behavior({
-      'click focus:delegate(button)': tick,
+      'click focus:delegate(button)': tick
     })
     b.add(target)
     target.click()

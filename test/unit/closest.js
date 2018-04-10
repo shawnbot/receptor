@@ -18,7 +18,6 @@ describe('closest(element, selector)', function() {
   it('bails when it reaches the Document', function() {
     document.body.innerHTML = '<div><a>foo</a></div>'
     const target = document.querySelector('a')
-    const div = document.querySelector('div')
     assert.strictEqual(closest(target, '[hidden]'), undefined)
   })
 })

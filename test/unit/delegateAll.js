@@ -6,17 +6,17 @@ describe('delegateAll({selector: function})', function() {
     document.body.innerHTML = '<div><a>foo</a></div>'
     const link = document.querySelector('a')
     const listener = delegateAll({
-      a: function(e) {
+      a: function() {
         assert.strictEqual(this, link)
       },
-      b: function(e) {
+      b: function() {
         assert.ok(false, 'this listener should not fire')
-      },
+      }
     })
     document.body.addEventListener('click', listener)
     link.click()
     document.body.removeEventListener('click', listener)
-    process.nextTick(done)
+    setTimeout(done, 0)
   })
 })
 
@@ -28,17 +28,17 @@ describe('delegateAll() with multiple selectors', function() {
       a: function() {
         values.push(this.nodeName)
       },
-      b: function(e) {
+      b: function() {
         values.push(this.nodeName)
-      },
+      }
     })
     document.body.addEventListener('click', listener)
     document.querySelector('b').click()
     document.body.removeEventListener('click', listener)
-    process.nextTick(function() {
+    setTimeout(() => {
       assert.deepEqual(values, ['A', 'B'])
       done()
-    })
+    }, 0)
   })
 
   it('short-circuits when one callback returns false', function(done) {
@@ -49,16 +49,16 @@ describe('delegateAll() with multiple selectors', function() {
         values.push(this.nodeName)
         return false
       },
-      b: function(e) {
+      b: function() {
         values.push(this.nodeName)
-      },
+      }
     })
     document.body.addEventListener('click', listener)
     document.querySelector('b').click()
     document.body.removeEventListener('click', listener)
-    process.nextTick(function() {
+    setTimeout(() => {
       assert.deepEqual(values, ['A'])
       done()
-    })
+    }, 0)
   })
 })

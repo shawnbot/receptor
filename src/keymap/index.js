@@ -7,15 +7,15 @@ const MODIFIERS = {
   Alt: 'altKey',
   Control: 'ctrlKey',
   Ctrl: 'ctrlKey',
-  Shift: 'shiftKey',
+  Shift: 'shiftKey'
 }
 
 const MODIFIER_SEPARATOR = '+'
 
-const getEventKey = function(event, hasModifiers) {
-  var key = event.key
+function getEventKey(event, hasModifiers) {
+  let key = event.key
   if (hasModifiers) {
-    for (var modifier in MODIFIERS) {
+    for (const modifier in MODIFIERS) {
       if (event[MODIFIERS[modifier]] === true) {
         key = [modifier, key].join(MODIFIER_SEPARATOR)
       }
@@ -29,7 +29,7 @@ export default function keymap(keys) {
     return key.indexOf(MODIFIER_SEPARATOR) > -1
   })
   return function keymapper(event) {
-    var key = getEventKey(event, hasModifiers)
+    const key = getEventKey(event, hasModifiers)
     return [key, key.toLowerCase()].reduce((result, _key) => {
       if (_key in keys) {
         return keys[key].call(this, event)

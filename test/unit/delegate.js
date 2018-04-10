@@ -4,8 +4,8 @@ import {delegate} from '../..'
 describe('delegate(selector, function)', function() {
   it('delegates to the target', function(done) {
     document.body.innerHTML = '<div><a>foo</a></div>'
-    var link = document.querySelector('a')
-    var listener = delegate('a', function(e) {
+    const link = document.querySelector('a')
+    const listener = delegate('a', function() {
       assert.strictEqual(this, link)
       done()
     })
@@ -16,8 +16,8 @@ describe('delegate(selector, function)', function() {
 
   it('delegates to the ancestor', function(done) {
     document.body.innerHTML = '<div><a>foo <b>bar</b></a></div>'
-    var link = document.querySelector('a')
-    var listener = delegate('a', function(e) {
+    const link = document.querySelector('a')
+    const listener = delegate('a', function() {
       assert.strictEqual(this, link)
       done()
     })
@@ -28,13 +28,12 @@ describe('delegate(selector, function)', function() {
 
   it('does not call the handler if no match is found', function(done) {
     document.body.innerHTML = '<div><a>foo <b>bar</b></a></div>'
-    var link = document.querySelector('a')
-    var listener = delegate('section', function(e) {
+    const listener = delegate('section', () => {
       assert.ok(false, 'this should not happen')
     })
     document.body.addEventListener('click', listener)
     document.querySelector('b').click()
     document.body.removeEventListener('click', listener)
-    process.nextTick(done)
+    setTimeout(done, 0)
   })
 })

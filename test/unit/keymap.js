@@ -4,9 +4,9 @@ import {keymap} from '../..'
 xdescribe('keymap({key: listener})', function() {
   it('fires for certain keys', function(done) {
     const listener = keymap({
-      PageUp: function(e) {
+      PageUp: function() {
         done()
-      },
+      }
     })
     const target = document.body
     target.addEventListener('keydown', listener)
@@ -16,15 +16,15 @@ xdescribe('keymap({key: listener})', function() {
 
   it('ignores other keys', function(done) {
     const listener = keymap({
-      PageUp: function(e) {
+      PageUp: function() {
         assert.ok(false, 'should not match PageUp')
-      },
+      }
     })
     const target = document.body
     target.addEventListener('keydown', listener)
     target.dispatchEvent(
       new KeyboardEvent('keydown', {
-        key: ' ',
+        key: ' '
       })
     )
     target.removeEventListener('keydown', listener)
@@ -33,19 +33,19 @@ xdescribe('keymap({key: listener})', function() {
 
   it('respects modifiers', function(done) {
     const listener = keymap({
-      PageUp: function(e) {
+      PageUp: function() {
         assert.ok(false, 'modifier-free callback should not fire here')
       },
-      'Shift+PageUp': function(e) {
+      'Shift+PageUp': function() {
         done()
-      },
+      }
     })
     const target = document.body
     target.addEventListener('keydown', listener)
     target.dispatchEvent(
       new KeyboardEvent('keydown', {
         key: 'PageUp',
-        shiftKey: true,
+        shiftKey: true
       })
     )
     target.removeEventListener('keydown', listener)
@@ -53,16 +53,16 @@ xdescribe('keymap({key: listener})', function() {
 
   it('ignores modifiers if none are provided', function(done) {
     const listener = keymap({
-      PageUp: function(e) {
+      PageUp: function() {
         done()
-      },
+      }
     })
     const target = document.body
     target.addEventListener('keydown', listener)
     target.dispatchEvent(
       new KeyboardEvent('keydown', {
         key: 'PageUp',
-        shiftKey: true,
+        shiftKey: true
       })
     )
     target.removeEventListener('keydown', listener)
