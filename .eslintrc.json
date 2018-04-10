@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "plugin:github/es6",
+    "plugin:github/browser"
+  ],
+  "rules": {
+    "no-invalid-this": "off"
+  }
+}

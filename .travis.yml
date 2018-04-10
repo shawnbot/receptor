@@ -1,0 +1,9 @@
+language: node_js
+
+node_js:
+  # IOW, "latest stable"
+  - node
+
+cache:
+  directories:
+    - node_modules

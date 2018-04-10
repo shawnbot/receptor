@@ -33,28 +33,27 @@ npm install receptor
 ```
 
 In CommonJS environments, you may either require the module and access its
-[API](#API) via properties:
+[API](#API) via the top-level export:
 
 ```js
-var receptor = require('receptor');
-var click = receptor.delegate('click', 'button', function(e) {
+const receptor = require('receptor');
+const click = receptor.delegate('click', 'button', function(e) {
   // ...
 });
 ```
 
-or you can require the top-level API methods directly, which can cut down on
-your bundle size if you don't need the entire API:
+...or, if you're using ES2015 and/or [tree-shaking], you can import the
+top-level API methods directly:
 
 ```js
-var behavior = require('receptor/behavior');
-var delegateAll = require('receptor/delegateAll');
+import {behavior, delegateAll} from 'receptor';
 // etc.
 ```
 
 ### Browser
 To use receptor in the browser, you can either bundle it with your CommonJS
-tool of choice ([browserify], [webpack], etc.) or grab the browser-ready build
-from the [dist directory](dist/).
+tool of choice ([webpack], [rollup], [browserify], etc.) or grab the
+browser-ready build from the [dist directory](dist/).
 
 ## API
 
@@ -160,12 +159,12 @@ interactions:
   <!-- stuff -->
 </menu>
 <script>
-var MenuButton = receptor.behavior({
+const MenuButton = receptor.behavior({
   'click': {
     '[role=menubutton]': function(event) {
-      var pressed = MenuButton.toggle(this);
+      let pressed = MenuButton.toggle(this);
       if (pressed) {
-        var close = MenuButton.getCloseListener(this);
+        const close = MenuButton.getCloseListener(this);
         window.addEventListener('click', close);
       }
     }
@@ -181,7 +180,7 @@ var MenuButton = receptor.behavior({
   },
 
   getMenu: function(button) {
-    var id = button.getAttribute('aria-controls');
+    const id = button.getAttribute('aria-controls');
     return document.getElementById(id);
   },
 
@@ -202,5 +201,7 @@ MenuButton.add(document.body);
 [key name]: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
 [other tools]: https://www.npmjs.com/search?q=delegate
 [addEventListener]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
-[browserify]: http://browserify.org/
 [webpack]: https://webpack.github.io/
+[browserify]: http://browserify.org/
+[rollup]: https://rollupjs.org/
+[tree-shaking]: https://webpack.js.org/guides/tree-shaking/
