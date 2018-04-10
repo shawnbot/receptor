@@ -1,5 +1,5 @@
 import assert from 'assert'
-import closest from '../../closest'
+import {closest} from '../..'
 
 describe('closest(element, selector)', function() {
   it('matches the target', function() {

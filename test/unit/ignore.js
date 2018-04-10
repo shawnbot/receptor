@@ -1,5 +1,5 @@
 import assert from 'assert'
-import ignore from '../../ignore'
+import {ignore} from '../..'
 import ticker from '../ticker'
 
 describe('ignore(element, function)', function() {

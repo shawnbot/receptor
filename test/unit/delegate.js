@@ -1,5 +1,5 @@
 import assert from 'assert'
-import delegate from '../../delegate'
+import {delegate} from '../..'
 
 describe('delegate(selector, function)', function() {
   it('delegates to the target', function(done) {

@@ -1,5 +1,5 @@
 import assert from 'assert'
-import behavior from '../../behavior'
+import {behavior} from '../..'
 import ticker from '../ticker'
 
 describe('behavior({event: function})', function() {

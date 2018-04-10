@@ -1,5 +1,5 @@
 import assert from 'assert'
-import once from '../../once'
+import {once} from '../..'
 import ticker from '../ticker'
 
 describe('once(function)', function() {

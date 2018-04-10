@@ -1,5 +1,5 @@
 import assert from 'assert'
-import keymap from '../../keymap'
+import {keymap} from '../..'
 
 xdescribe('keymap({key: listener})', function() {
   it('fires for certain keys', function(done) {
