@@ -1,18 +1,17 @@
 import assert from 'assert'
 import once from '../../once'
+import ticker from '../ticker'
 
 describe('once(function)', function() {
   it('cleans up after itself', function() {
     document.body.innerHTML = '<div><a>foo</a></div>'
-    var times = 0
-    var listener = once(function(e) {
-      times++
-    })
+    const tick = ticker()
+    const listener = once(tick)
     document.body.addEventListener('click', listener)
-    var link = document.querySelector('a')
+    const link = document.querySelector('a')
     link.click()
     link.click()
     document.body.click()
-    assert.equal(times, 1)
+    assert.equal(tick.times, 1)
   })
 })

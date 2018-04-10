@@ -4,8 +4,8 @@ import delegateAll from '../../delegateAll'
 describe('delegateAll({selector: function})', function() {
   it('delegates to the target', function(done) {
     document.body.innerHTML = '<div><a>foo</a></div>'
-    var link = document.querySelector('a')
-    var listener = delegateAll({
+    const link = document.querySelector('a')
+    const listener = delegateAll({
       a: function(e) {
         assert.strictEqual(this, link)
       },
@@ -23,8 +23,8 @@ describe('delegateAll({selector: function})', function() {
 describe('delegateAll() with multiple selectors', function() {
   it('delegates to multiple callbacks', function(done) {
     document.body.innerHTML = '<div><a>foo <b>bar</b></a></div>'
-    var values = []
-    var listener = delegateAll({
+    const values = []
+    const listener = delegateAll({
       a: function() {
         values.push(this.nodeName)
       },
@@ -43,8 +43,8 @@ describe('delegateAll() with multiple selectors', function() {
 
   it('short-circuits when one callback returns false', function(done) {
     document.body.innerHTML = '<div><a>foo <b>bar</b></a></div>'
-    var values = []
-    var listener = delegateAll({
+    const values = []
+    const listener = delegateAll({
       a: function() {
         values.push(this.nodeName)
         return false

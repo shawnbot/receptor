@@ -1,15 +1,14 @@
 import assert from 'assert'
 import behavior from '../../behavior'
+import ticker from '../ticker'
 
 describe('behavior({event: function})', function() {
   it('adds and removes', function() {
-    var target = document.body
+    const target = document.body
     target.innerHTML = '<button>hi</button>'
-    var times = 0
-    var b = behavior({
-      click: function(e) {
-        times++
-      },
+    const tick = ticker()
+    const b = behavior({
+      click: tick
     })
     b.add(target)
     target.click()
@@ -19,19 +18,17 @@ describe('behavior({event: function})', function() {
     target.click()
     b.remove(target)
     target.click()
-    assert.equal(times, 2)
+    assert.equal(tick.times, 2)
   })
 })
 
 describe('behavior({"event1 event2": function})', function() {
   it('adds multiple event type listeners', function() {
     document.body.innerHTML = '<button>hi</button>'
-    var target = document.querySelector('button')
-    var times = 0
-    var b = behavior({
-      'click focus': function(e) {
-        times++
-      },
+    const target = document.querySelector('button')
+    const tick = ticker()
+    const b = behavior({
+      'click focus': tick,
     })
     b.add(target)
     target.click()
@@ -45,20 +42,18 @@ describe('behavior({"event1 event2": function})', function() {
     b.remove(target)
     target.click()
     target.focus()
-    assert.equal(times, 4)
+    assert.equal(tick.times, 4)
   })
 })
 
 describe('behavior({event: {selector: function}})', function() {
   it('adds and removes', function() {
-    var target = document.body
+    const target = document.body
     target.innerHTML = '<h1>yo</h1> <button>hi <i>there</i></button>'
-    var times = 0
-    var b = behavior({
+    const tick = ticker()
+    const b = behavior({
       click: {
-        button: function(e) {
-          times++
-        },
+        button: tick,
       },
     })
     b.add(target)
@@ -67,19 +62,17 @@ describe('behavior({event: {selector: function}})', function() {
     target.querySelector('i').click()
     b.remove(target)
     target.click()
-    assert.equal(times, 2)
+    assert.equal(tick.times, 2)
   })
 })
 
 describe('behavior({"event:delegate(selector)": callback}', function() {
   it('adds and removes', function() {
-    var target = document.body
+    const target = document.body
     target.innerHTML = '<h1>yo</h1> <button>hi <i>there</i></button>'
-    var times = 0
-    var b = behavior({
-      'click:delegate(button)': function(e) {
-        times++
-      },
+    const tick = ticker()
+    const b = behavior({
+      'click:delegate(button)': tick,
     })
     b.add(target)
     target.click()
@@ -87,17 +80,15 @@ describe('behavior({"event:delegate(selector)": callback}', function() {
     target.querySelector('i').click()
     b.remove(target)
     target.click()
-    assert.equal(times, 2)
+    assert.equal(tick.times, 2)
   })
 
   it('adds and removes multiple event type listeners', function() {
     document.body.innerHTML = '<h1>yo</h1> <button>hi <i>there</i></button>'
-    var target = document.querySelector('button')
-    var times = 0
-    var b = behavior({
-      'click focus:delegate(button)': function(e) {
-        times++
-      },
+    const target = document.querySelector('button')
+    const tick = ticker()
+    const b = behavior({
+      'click focus:delegate(button)': tick,
     })
     b.add(target)
     target.click()
@@ -105,7 +96,7 @@ describe('behavior({"event:delegate(selector)": callback}', function() {
     b.remove(target)
     target.click()
     target.focus()
-    assert.equal(times, 2)
+    assert.equal(tick.times, 2)
   })
 })
 
