@@ -1,10 +1,9 @@
-const matches = require('matches-selector');
+import matches from 'matches-selector'
 
-module.exports = function(element, selector) {
+export default function closest(element, selector) {
   do {
     if (matches(element, selector)) {
-      return element;
+      return element
     }
-  } while ((element = element.parentNode) && element.nodeType === 1);
-};
-
+  } while ((element = element.parentNode) && element.nodeType === 1)
+}

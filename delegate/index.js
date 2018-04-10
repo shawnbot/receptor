@@ -1,11 +1,11 @@
 // polyfill Element.prototype.closest
-require('element-closest');
+import 'element-closest'
 
-module.exports = function delegate(selector, fn) {
-  return function delegation(event) {
-    var target = event.target.closest(selector);
+export default function delegate(selector, fn) {
+  return event => {
+    const target = event.target.closest(selector)
     if (target) {
-      return fn.call(target, event);
+      return fn.call(target, event)
     }
   }
-};
+}

@@ -1,7 +1,7 @@
-module.exports = function compose(functions) {
+export default function compose(functions) {
   return function(e) {
-    return functions.some(function(fn) {
-      return fn.call(this, e) === false;
-    }, this);
-  };
-};
+    return functions.some(fn => {
+      return fn.call(this, e) === false
+    })
+  }
+}

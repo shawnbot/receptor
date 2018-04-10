@@ -1,7 +1,7 @@
-module.exports = {
-  behavior:     require('./behavior'),
-  delegate:     require('./delegate'),
-  delegateAll:  require('./delegateAll'),
-  ignore:       require('./ignore'),
-  keymap:       require('./keymap'),
-};
+import behavior from './behavior'
+import delegate from './delegate'
+import delegateAll from './delegateAll'
+import ignore from './ignore'
+import keymap from './keymap'
+
+export {behavior, delegate, delegateAll, ignore, keymap}
