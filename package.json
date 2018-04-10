@@ -9,7 +9,7 @@
   "scripts": {
     "mocha": "mocha -r babel-register -r jsdom-global/register",
     "test": "npm run mocha -- test/unit",
-    "build": "webpack index.js -o dist/receptor.js",
+    "build": "NODE_ENV=production webpack index.js -o dist/receptor.js",
     "preversion": "npm run build"
   },
   "prettier": {
