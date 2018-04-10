@@ -1,7 +1,9 @@
-import behavior from './behavior'
-import delegate from './delegate'
-import delegateAll from './delegateAll'
-import ignore from './ignore'
-import keymap from './keymap'
+import behavior from './src/behavior'
+import closest from './src/closest'
+import delegate from './src/delegate'
+import delegateAll from './src/delegateAll'
+import ignore from './src/ignore'
+import keymap from './src/keymap'
+import once from './src/once'
 
-export {behavior, delegate, delegateAll, ignore, keymap}
+export {behavior, closest, delegate, delegateAll, ignore, keymap, once}
