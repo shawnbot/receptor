@@ -1,6 +1,6 @@
 import assign from 'object-assign'
-import delegate from '../delegate'
-import delegateAll from '../delegateAll'
+import delegate from './delegate'
+import delegateAll from './delegateAll'
 
 const DELEGATE_PATTERN = /^(.+):delegate\((.+)\)$/
 const SPACE = ' '
