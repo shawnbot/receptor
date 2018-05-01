@@ -1,5 +1,5 @@
-import delegate from '../delegate'
-import compose from '../compose'
+import delegate from './delegate'
+import compose from './compose'
 
 const SPLAT = '*'
 
