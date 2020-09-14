@@ -35,7 +35,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
-    "eslint": "^4.19.1",
+    "eslint": "^7.9.0",
     "eslint-plugin-github": "^0.24.1",
     "jsdom": "^11.7.0",
     "jsdom-global": "^3.0.2",
